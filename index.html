@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Movie Crawler</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon/android-chrome-512x512.png" rel="icon" />
+  <link href="assets/img/favicon/android-chrome-512x512.png" rel="logo" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet" />
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+    .timeline {
+      width: 800px;
+      background-color: #0f172a;
+      color: #fff;
+      padding: 30px 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    .center {
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+    }
+
+    .timeline ul {
+      list-style-type: none;
+      border-left: 2px solid #094a68;
+      padding: 10px 5px;
+    }
+
+    .timeline ul li {
+      padding: 20px 20px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .timeline ul li span {
+      display: inline-block;
+      background-color: #072736;
+      border-radius: 25px;
+      padding: 2px 5px;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .timeline ul li .content h3 {
+      color: #fff;
+      font-size: 18px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .timeline ul li .content p {
+      padding: 5px 0px 15px 0px;
+      font-size: 15px;
+    }
+
+    .timeline ul li:before {
+      position: absolute;
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: #34ace0;
+      border-radius: 50%;
+      left: -11px;
+      top: 28px;
+      transition: 0.5s;
+    }
+
+    .timeline ul li:hover {
+      background-color: #dc2626;
+      border-radius: 10px;
+    }
+
+    .timeline ul li:hover:before {
+      background-color: rgb(250, 70, 54);
+      box-shadow: 0px 0px 10px 2px rgb(250, 70, 54);
+    }
+
+    @media (max-width: 300px) {
+      .timeline {
+        width: 100%;
+        padding: 30px 5px 30px 10px;
+      }
+
+      .timeline ul li .content h3 {
+        color: #34ace0;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="d-flex align-items-center">
+        <h1 class="header-title">
+          MOVIE <span class="crawler">CRAWLER</span>
+        </h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Documents</a></li>
+          <li><a href="scope.html">Scope</a></li>
+          <li><a href="#team">Team</a></li>
+        </ul>
+      </nav>
+      <!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <div class="container position-relative">
+      <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+          <h2>Welcome to <span>Movie Crawler</span></h2>
+          <p>
+            Discover your favorite movies and TV shows through our AI-based
+            content rating system
+          </p>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="#about" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <img src="assets/img/74119-ClapperboardFilmstrips-removebg.png" class="img-fluid" alt="" data-aos="zoom-out"
+            data-aos-delay="100" />
+        </div>
+      </div>
+    </div>
+
+    <div class="icon-boxes position-relative">
+      <div class="container position-relative">
+        <div class="row gy-4 mt-5">
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="123"></i></div>
+              <h4 class="title">
+                <a class="stretched-link">Developing a Dynamic Intelligent Conversational Chatbot
+                  System</a>
+              </h4>
+            </div>
+          </div>
+          <!--End Icon Box -->
+
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="123"></i></div>
+              <h4 class="title">
+                <a class="stretched-link">Sentiment Analysis of Movie Reviews in Singlish Language
+                  Using Machine Language</a>
+              </h4>
+            </div>
+          </div>
+          <!--End Icon Box -->
+
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="123"></i></div>
+              <h4 class="title">
+                <a class="stretched-link">Video Based Movie Genre Classification</a>
+              </h4>
+            </div>
+          </div>
+          <!--End Icon Box -->
+
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-box">
+              <div class="icon"><i class="123"></i></div>
+              <h4 class="title">
+                <a class="stretched-link">Movie Content-Based Video Retrieval From Short Video
+                </a>
+              </h4>
+            </div>
+          </div>
+          <!--End Icon Box -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <main id="main">
+    <!-- ======= Research Project Scope Section ======= -->
+
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Research Project Scope</h2>
+          <p>
+            This section has domain details about our project. Describe the
+            information we have gathered by the literature survey.
+          </p>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <!-- <h3>Voluptatem dignissimos provident quasi corporis</h3> -->
+            <img src="assets/img/img 2.png" class="img-fluid rounded-4 mb-4" alt="" />
+            <!-- <p>The fundamental objective of delivering this mobile application is to help passengers to have a safe and comfortable ride consuming their time.</p> -->
+          </div>
+          <div class="col-lg-6">
+            <div class="content ps-0 ps-lg-5">
+              <p class="fst-italic">
+                The research project aims to address the pressing challenges in AI-Based Movie Content Rating and
+                Recommendation Systems, focusing on enhancing personalized cinematic experiences while balancing
+                accuracy and serendipity in recommendations. The scope encompasses the development of innovative
+                algorithms that fuse collaborative filtering and content-based approaches, leveraging natural language
+                processing and deep learning to accurately capture user emotions in sentiment analysis models. This
+                research will further involve the integration of sentiment analysis with recommendation algorithms to
+                enhance the overall cinematic experience by aligning with both user preferences and emotional responses.
+                Additionally, the project will focus on accommodating diverse demographics and cultures by developing
+                recommendation algorithms that incorporate cultural nuances and language-specific preferences. The
+                ultimate goal is to offer a more inclusive and globally relevant cinematic experience while contributing
+                to the film industry's success through real-time trend monitoring and the integration of socio-cultural
+                factors into recommendation models.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Us Section -->
+
+    <!-- Timeline Section -->
+    <div class="center">
+      <div class="timeline">
+        <ul>
+          <li>
+            <span>8th May 2023</span>
+            <div class="content">
+              <h3>Project Proposal</h3>
+              <p>
+                The project including its objectives and methodology was
+                initially proposed to the panel.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>24th May 2023</span>
+            <div class="content">
+              <h3>Progress Presentation 1</h3>
+              <p>
+                50% of the proposed project was completed and demostrated in
+                this stage.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>06th September 2023</span>
+            <div class="content">
+              <h3>Progress Presentation 2</h3>
+              <p>
+                90% of the proposed project was completed and demostrated in
+                this stage.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>06th October 2023</span>
+            <div class="content">
+              <h3>Poster & Demonstration</h3>
+              <p>
+                Main point of using a poster is to aware and demonstrate a
+                brief introduction of research to the audience and capture
+                their attention.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>01st November 2023</span>
+            <div class="content">
+              <h3>Final Presentation & Viva</h3>
+              <p>
+                Final presentation to demostrate the fully functional mobile
+                application and its methodology was done.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6">
+            <img src="assets/img/stats-img.svg" alt="" class="img-fluid" />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="2500" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Data Collection</strong> through Filed visit</p>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>User Testing</strong> about our website</p>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Achievement</strong> Accepted by IRJIET</p>
+            </div>
+            <!-- End Stats Item -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Stats Counter Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action" class="call-to-action">
+      <div class="container text-center" data-aos="zoom-out">
+        <a href="https://youtu.be/ydRNubmuHhw" class="glightbox play-btn"></a>
+        <h3>Play</h3>
+        <p>The Introduce Our Movie Crawler Website</p>
+      </div>
+    </section>
+    <!-- End Call To Action Section -->
+
+    <!-- Downloads -->
+    <section id="services" class="main-sections">
+      <div class="container">
+        <!-- Documents -->
+        <div class="sub-section">
+          <h2 class="text-center section-headings">
+            Documents & Presentations
+          </h2>
+          <p class="text-center">
+            Please find all documents related to this project below.
+          </p>
+          <div class="row mt-sm-5 downloads-container">
+            <!-- Project Proposal -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-pdf"></i>Project Proposal
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/04/20</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Individual<a
+                      href="https://mysliit-my.sharepoint.com/:f:/g/personal/it20081966_my_sliit_lk/EpQ-bO31IjpLlzbYrNwtHcgB4vFlZyxmcgZZKgKWziq6Ew?e=9fu5Xf"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Status Documents -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-pdf"></i>Status Documents I
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/07/04</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <!-- <li class="list-group-item">Group<a href="">Download</a></li> -->
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/status+document+1.pdf"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Status Documents -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-pdf"></i>Status Documents II
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/09/09</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <!-- <li class="list-group-item">Group<a href="">Download</a></li> -->
+                  <li class="list-group-item">
+                    Individual<a
+                      href="https://mysliit-my.sharepoint.com/:f:/g/personal/it20081966_my_sliit_lk/Esl0F3VyLK1HnqlJeGlVl1YByMFkuHv0gejWkksuVSOvRQ?e=M1TxGC"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Research -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-pdf"></i>Research Paper
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/08/30</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/research+paper.pdf"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Final Report -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-pdf"></i>Final Report
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/09/29</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/2023-212_Project+Final+Report.pdf"
+                      target="_blank">Download</a>
+                  </li>
+                  <li class="list-group-item">
+                    Individual<a
+                      href="https://mysliit-my.sharepoint.com/:f:/g/personal/it20081966_my_sliit_lk/Ejx82jjGNYdBppKVVPnlcNUB8aP8gOHCKLFtL7eaKLP8Iw?e=9oi2Sh"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Poster -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-image"></i>Poster
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/10/29</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/Research+Poster+GRP_212.pdf"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Presentations -->
+        <div id="presentations" class="sub-section">
+          <h2>Presentations</h2>
+          <p>Please find all presentations related this project below.</p>
+          <div class="row mt-sm-5 downloads-container">
+            <!-- Project Proposal -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-powerpoint"></i>Project Proposal
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/05/08</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/Proposal+Presentation.pptx"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Progress Presentation I -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-powerpoint"></i>Progress Presentation I
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/07/04</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/Progress_Presentation_01.pptx"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Progress Presentation II -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-powerpoint"></i>Progress Presentation II
+                  </h5>
+                  <p class="card-text pt-sm-2">Submitted on 2023/09/09</p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/Progress_Presentation_02.pptx"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Final Presentation -->
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-file-earmark-pdf mr-2 download-powerpoint"></i>Final Presentation
+                  </h5>
+                  <p class="card-text pt-sm-2">
+                    Yet to be submitted, link will be updated soon.
+                  </p>
+                </div>
+                <ul class="download-items list-group list-group-flush">
+                  <li class="list-group-item">
+                    Group<a href="https://reserach-documents.s3.amazonaws.com/Final_Presentation_.pptx"
+                      target="_blank">Download</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Our Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Our Team</h2>
+          <p>This is our Movie Crawler team members</p>
+        </div>
+
+        <div class="row gy-4 justify-content-center">
+          <!-- End Team Member -->
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/uthpala.jpg" class="img-fluid" alt="" />
+              <h4>Ms. Uthpala Samarakoon</h4>
+              <span>Senior Lecturer</span>
+              <span>Supervisor</span>
+              <div class="social">
+                <a href="https://web.facebook.com/uthpala.samarakoon.7"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/uthpala-samarakoon-76a51439/"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- End Team Member -->
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/sumeera.png" class="img-fluid" alt="" />
+              <h4>R.M.S.M. Rathnayaka</h4>
+              <span>Group Leader</span>
+              <div class="social">
+                <a href="https://web.facebook.com/sumeeramadushanka.pn"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/sumeera-madushanka-4a17a0191/"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- End Team Member -->
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/nimesh.png" class="img-fluid" alt="" />
+              <h4>B.R.M.N.D. Rathnayaka</h4>
+              <span>Group Member</span>
+              <div class="social">
+                <a href="https://web.facebook.com/profile.php?id=100085714878029"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/nimesh-dilshan-67459a236/"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row gy-4 justify-content-center mt-5">
+          <!-- End Team Member -->
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/thisun.png" class="img-fluid" alt="" />
+              <h4>S.M.T.V.Samarasekara</h4>
+              <span>Group Member</span>
+              <div class="social">
+                <a href="https://web.facebook.com/viraj.samarasekara.5?mibextid=ZbWKwL&_rdc=1&_rdr"><i
+                    class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/thisun-samarasekara-a22a59227/"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- End Team Member -->
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/thilina.png" class="img-fluid" alt="" />
+              <h4>K.M.G.T Herath</h4>
+              <span>Group Member</span>
+              <div class="social">
+                <a href="https://web.facebook.com/thilina.gayashan.3"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/gayashan-herath-8b1b29232/"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Our Team Section -->
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <h1 class="header-title">
+              MOVIE <span class="crawler">CRAWLER</span>
+            </h1>
+          </a>
+          <p>The Movie Crawler Website</p>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#about">About us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            Sri Lanka Institute of Information Technology <br />
+            Kaduwela Rd, Malabe<br />
+            Sri Lanka <br /><br />
+            <strong>Phone:</strong> +94 783626576<br />
+            <strong>Email:</strong> movieCrawler@gmail.com<br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MovieCrawler</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
